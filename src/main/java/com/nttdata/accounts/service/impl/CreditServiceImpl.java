@@ -57,6 +57,7 @@ public class CreditServiceImpl implements CreditService {
                 .flatMap(origin -> {
                     origin.setCustomer(entity.getCustomer());
                     origin.setType(entity.getType());
+                    origin.setCode(entity.getCode());
                     origin.setAmount(entity.getAmount());
                     origin.setTea(entity.getTea());
                     origin.setMonthlyTime(entity.getMonthlyTime());
@@ -81,4 +82,8 @@ public class CreditServiceImpl implements CreditService {
         return creditRepository.findById(id);
     }
 
+    @Override
+    public Mono<Credit> findByCode(String code) {
+        return creditRepository.findByCode(code);
+    }
 }

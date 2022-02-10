@@ -12,6 +12,7 @@ public class Credit {
 
     @Id
     private String id;
+    private String code;
     private String customer;
     private String type; //Tipo de crédito: personal o empresarial
     private Float amount; //Monto prestamos
