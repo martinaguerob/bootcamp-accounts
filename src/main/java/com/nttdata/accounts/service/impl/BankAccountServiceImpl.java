@@ -32,6 +32,7 @@ public class BankAccountServiceImpl implements BankAccountService {
                 .flatMap(origin -> {
                     origin.setCustomer(entity.getCustomer());
                     origin.setStatus(entity.getStatus());
+                    origin.setTypeCustomer(entity.getTypeCustomer());
                     origin.setNumberAccount(entity.getNumberAccount());
                     origin.setType(entity.getType());
                     return bankAccountRepository.save(origin);

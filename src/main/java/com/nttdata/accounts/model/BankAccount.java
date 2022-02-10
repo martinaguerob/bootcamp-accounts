@@ -15,6 +15,6 @@ public class BankAccount {
     private String type;
     private String numberAccount;
     private String customer;
+    private String typeCustomer; //Se eliminará al conectar con el MS de Customers
     private Boolean status;
-
 }

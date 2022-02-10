@@ -31,7 +31,7 @@ public class CreditController {
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<Credit> updateCredit(@RequestBody Credit credit, @PathVariable String id){
+    public Mono<Credit> updateCredit(@RequestBody Credit credit){
         System.out.println("Actualizar crédito");
         return creditService.update(credit);
     }

@@ -15,5 +15,4 @@ public class CreditCard {
     private Float balance; //Saldo inicial
     private String customer;
     private Boolean status;
-
 }

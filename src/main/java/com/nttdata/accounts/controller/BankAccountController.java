@@ -25,13 +25,25 @@ public class BankAccountController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<BankAccount> saveBankAccount(@RequestBody BankAccount bankAccount){
-        System.out.println("Guardar cuenta bancaria");
-        return bankAccountService.save(bankAccount);
+        if (bankAccount.getTypeCustomer().equals("personal")){
+            //Si es personal
+            System.out.println("Guardar cuenta a personal");
+            return bankAccountService.findByTypeAndCustomer(bankAccount.getType(), bankAccount.getCustomer())
+                    .switchIfEmpty(bankAccountService.save(bankAccount))
+                    .onErrorResume(throwable -> Mono.empty());
+        }else if (bankAccount.getType().equals("plazo fijo")){
+            //Si es empresarial
+            System.out.println("Guardar cuenta empresarial");
+            return bankAccountService.save(bankAccount);
+        }else{
+            System.out.println("No se guarda nada");
+            return Mono.empty();
+        }
     }
 
     @PutMapping("/update")
     @ResponseStatus(HttpStatus.OK)
-    public Mono<BankAccount> updateBankAccount(@RequestBody BankAccount bankAccount, @PathVariable String id){
+    public Mono<BankAccount> updateBankAccount(@RequestBody BankAccount bankAccount){
         System.out.println("Actualizar cuenta bancaria");
         return bankAccountService.update(bankAccount);
     }
